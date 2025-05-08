@@ -8,14 +8,25 @@ public class PlayerController : MonoBehaviour
     public float slideDuration = 0.5f;      //      임시
 
     private Rigidbody2D rb;
+    private BoxCollider2D boxCollider;
+    private Animator animator;
+
     private bool isGrounded = true;     //      점프를 위한 달리기 bool 값
     private bool isSliding = false;     //      슬라이딩 bool 값
-    private CapsuleCollider2D capsuleCollider;
+
+    private Vector2 originalColliderSize;
+    private Vector2 originalColliderOffset;
+    
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        capsuleCollider = GetComponent<CapsuleCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
+
+        // 원본 콜라이더 정보 저장
+        originalColliderSize = boxCollider.size;
+        originalColliderOffset = boxCollider.offset;
     }
 
     private void Update()
@@ -29,27 +40,33 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Slide());
         }
+
+        animator.SetBool("isGrounded", isGrounded);     //      애니메이션을 위해 땅에 붙어있는지 확인
     }
 
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         isGrounded = false;
+        Animator.SetTrigger("점프");      //      여기에 점프 애니메이터의 bool 값 들어가야해요
     }
 
     IEnumerator Slide()
     {
         isSliding = true;
+        animator.SetBool("isSliding", true);
         
         // 콜라이더 사이즈를 줄여 몸을 낮추는 효과를 준다
-        capsuleCollider.size = new Vector2(capsuleCollider.size.x, capsuleCollider.size.y * 0.5f);
-        capsuleCollider.offset = new Vector2(capsuleCollider.offset.x, capsuleCollider.offset.y - 0.25f);
+        boxCollider.size = new Vector2(boxCollider.size.x, boxCollider.size.y * 0.5f);
+        boxCollider.offset = new Vector2(boxCollider.offset.x, boxCollider.offset.y - 0.25f);
 
         yield return new WaitForSeconds(slideDuration);
 
         // 콜라이더 사이즈 복구함으로 다시 일어서는 효과
-        capsuleCollider.size = new Vector2(capsuleCollider.size.x, capsuleCollider.size.y * 2f);
-        capsuleCollider.offset = new Vector2(capsuleCollider.offset.x, capsuleCollider.offset.y + 0.25f);
+        boxCollider.size = originalColliderSize;
+        boxCollider.offset = originalColliderOffset;
+        animator.SetBool("isSlidng", false);
+       
 
         isSliding = false;
     }
