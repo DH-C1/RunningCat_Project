@@ -4,7 +4,11 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
+<<<<<<< HEAD
   productGUID: 1f26310d07a29314dbdab0ed74e7b5d5
+=======
+  productGUID: abdd35852de7c4f2b9f76de500ad92ba
+>>>>>>> origin/character_move++
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +17,11 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
+<<<<<<< HEAD
   productName: RunningCat_Project
+=======
+  productName: CookieRun
+>>>>>>> origin/character_move++
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -719,14 +727,22 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
+<<<<<<< HEAD
   metroPackageName: RunningCat_Project
+=======
+  metroPackageName: CookieRun
+>>>>>>> origin/character_move++
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
+<<<<<<< HEAD
   metroApplicationDescription: RunningCat_Project
+=======
+  metroApplicationDescription: CookieRun
+>>>>>>> origin/character_move++
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -794,11 +810,19 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
+<<<<<<< HEAD
   cloudProjectId: 3a6aa874-a2a7-4f23-9778-48fbd698eb39
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: RunningCat_Project
   organizationId: cdh9633
+=======
+  cloudProjectId: 0ae8a92a-c32c-46de-834f-b967e3a107e4
+  framebufferDepthMemorylessMode: 0
+  qualitySettingsNames: []
+  projectName: CookieRun
+  organizationId: minjonggon
+>>>>>>> origin/character_move++
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
