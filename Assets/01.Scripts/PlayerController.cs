@@ -11,8 +11,14 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Animator animator;
 
+    public float forwardSpeed = 3f;     //      앞으로 나가는 힘
+
     private bool isGrounded = true;     //      점프를 위한 달리기 bool 값
     private bool isSliding = false;     //      슬라이딩 bool 값
+
+    public bool isDead = false;     //      죽음 확인
+
+    float deathCooldown = 0f;       //      죽고 나서 시간
 
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
@@ -22,11 +28,21 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-        animator = GetComponent<Animator>();
+        animator = transform.GetComponentInChildren<Animator>();
 
         // 원본 콜라이더 정보 저장
         originalColliderSize = boxCollider.size;
         originalColliderOffset = boxCollider.offset;
+
+        if (animator == null)
+        {
+            Debug.LogError("Not Founded Animator");
+        }
+
+        if (rb == null)
+        {
+            Debug.LogError("Not Founded Rigidbody");
+        }
     }
 
     private void Update()
@@ -44,11 +60,26 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isGrounded", isGrounded);     //      애니메이션을 위해 땅에 붙어있는지 확인
     }
 
+    public void FixedUpdate()
+    {
+        if (isDead)
+            return;
+
+        Vector3 velocity = rb.velocity;     //      가속도
+        velocity.x = forwardSpeed;      //       똑같은 속도
+
+        rb.velocity = velocity;
+
+        float angle = Mathf.Clamp((rb.velocity.y * 10f), -90, 90);
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         isGrounded = false;
-        Animator.SetTrigger("점프");      //      여기에 점프 애니메이터의 bool 값 들어가야해요
+        animator.SetTrigger("Jump");
     }
 
     IEnumerator Slide()
@@ -73,6 +104,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (isDead)
+            return;
+
+        animator.SetInteger("IsDie", 1);
+        isDead = true;
+        deathCooldown = 1f;
+
         if (collision.collider.CompareTag("Ground"))
         {
             isGrounded = true;
