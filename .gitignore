@@ -64,9 +64,32 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-# Packed Addressables
-/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+.vsconfig
+
+
+/[Aa]ssets/[Pp]lugins/[Aa]ndroid/*.jar*
+/[Aa]ssets/[Pp]lugins/[Aa]ndroid/*.aar*
+/[Aa]ssets/[Pp]lugins/[Aa]ndroid/*.meta*
+
+#Rider
+
+/.idea/*.*
+/.idea/.idea.BMP/.idea/*
+/.idea/.idea.petaverse-app/.idea/*
+/.idea/.idea.petaverse-app/riderModule.iml
+/.idea/.idea.petaverse-app.dir/.idea/*
+
+.vscode/launch.json
+.vscode/tasks.json
+
+/[Aa]ssets/VSCode/
+/[Aa]ssets/VSCode.meta
+
+.DS_Store
+
+
+ProjectSettings/ProjectVersion.txt
