@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = true;     //      점프를 위한 달리기 bool 값
     private bool isSliding = false;     //      슬라이딩 bool 값
 
-    public bool isDead = false;     //      죽음 확인
+    public bool Dead = false;     //      죽음 확인
 
     float deathCooldown = 0f;       //      죽고 나서 시간
 
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (isDead)
+        if (Dead)
             return;
 
         Vector3 velocity = rb.velocity;     //      가속도
@@ -104,11 +104,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isDead)
+        if (Dead)
             return;
 
-        animator.SetInteger("IsDie", 1);
-        isDead = true;
+        animator.SetInteger("Dead", 1);
+        Dead = true;
         deathCooldown = 1f;
 
         if (collision.collider.CompareTag("Ground"))
